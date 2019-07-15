@@ -35,6 +35,7 @@ def show_hostInfo():
     print("free mem(MB):", int(conn.getFreeMemory()/1024/1024))
     print("cpu numbers:", hostInfo[2])
     print("virtual type:", conn.getType())
+    print("connect url:", conn.getURI())
 
 
 def cretae_vhost():
