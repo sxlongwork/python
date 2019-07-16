@@ -1,5 +1,3 @@
-#!/usr/bin/env python3.6
-# -*- coding:utf-8 -*-
 import dns.resolver
 import http.client
 
@@ -23,12 +21,12 @@ def http_check(ip):
     url = ip + ":80"
     conn = http.client.HTTPConnection(url)
     try:
-        conn.request("GET", "/", headers = {"Host": domain})
+        conn.request("GET", "/", headers={"Host": domain})
         r = conn.getresponse()
         content = r.read(15)
         content = content.decode("utf-8")
     except Exception as e:
-        print("request error", e)
+        print("http request error", e)
     else:
         if content == "<!DOCTYPE html>":
             print(ip, " OK")
