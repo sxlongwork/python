@@ -1,9 +1,11 @@
+#!/usr/bin/env python3.6
+# -*- coding:utf-8 -*-
 import dns.resolver
 import http.client
 
 ip_list = []
 
-domain = "www.baidu.com"
+domain = 'www.baidu.com'
 
 
 def get_iplist():
@@ -14,13 +16,13 @@ def get_iplist():
     else:
         for ip in A.response.answer:
             for x in ip.items:
-                ip_list.append(ip)
+                ip_list.append(x)
 
 
 def http_check(ip):
     url = ip + ":80"
+    conn = http.client.HTTPConnection(url)
     try:
-        conn = http.client.HTTPConnection(url)
         conn.request("GET", "/", headers = {"Host": domain})
         r = conn.getresponse()
         content = r.read(15)
@@ -38,5 +40,4 @@ if __name__ == "__main__":
     get_iplist()
     for ip in ip_list:
         http_check(str(ip))
-    else:
-        print("everything is ok")
+
